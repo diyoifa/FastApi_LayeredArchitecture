@@ -32,9 +32,9 @@ async def update_user_route(request: Request, user = Depends(auth_user)):
     return await update_user(request, user)
 
 @router.delete("/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_user_route(user_id: str):
+async def delete_user_route(user_id: str, user = Depends(auth_user) ):
     await delete_user(user_id)
 
 @router.delete("/", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_all_users_route():
+async def delete_all_users_route(user = Depends(auth_user)):
     await delete_all_users()
