@@ -1,10 +1,7 @@
-import os
 from pymongo import MongoClient
-
+from .dotenv import MONGO_DB_URI
 try:
-    client = MongoClient(
-        'mongodb+srv://test1002542235:Cielo151.@cluster0.70zx4ii.mongodb.net/'
-    )
+    client = MongoClient(MONGO_DB_URI)
     database = client.users_management
     collection = database.users
 except Exception as e:
