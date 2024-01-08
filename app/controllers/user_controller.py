@@ -27,9 +27,9 @@ async def create_user_route(user: UserIn = Body(..., example={
 })):
     return await create_user(user)
 
-@router.patch("/", status_code=status.HTTP_200_OK, response_model=UserBase)
-async def update_user_route(request: Request, user = Depends(auth_user)):
-    return await update_user(request, user)
+@router.patch("/{user_id}", status_code=status.HTTP_200_OK, response_model=UserBase)
+async def update_user_route(user_id: str, request: Request, user = Depends(auth_user)):
+    return await update_user(request, user_id)
 
 @router.delete("/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_user_route(user_id: str, user = Depends(auth_user) ):

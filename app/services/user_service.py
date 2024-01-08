@@ -19,9 +19,9 @@ async def create_user(user: UserIn):
     # print(new_user)
     return UserBase(id=str(new_user["_id"]), username=new_user["username"], email=new_user["email"])
 
-async def update_user(request: Request, user: UserBase):
+async def update_user(request: Request, user_id:str):
     body = await request.json()
-    user_id = user.id
+    # user_id = user.id
     if "password" in body:
         body["password"] = encrypt_password(body["password"])
         updated_user = await update(user_id, body)

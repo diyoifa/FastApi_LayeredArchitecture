@@ -8,7 +8,7 @@ router = APIRouter(
     tags=["auth"]
 )
 
-@router.post("/", status_code=status.HTTP_302_FOUND, response_model=UserCredentials)
+@router.post("/", status_code=status.HTTP_200_OK, response_model=UserCredentials)
 async def auth_user(user: UserIn):
     user_credentials = await validate_user_credentials(user)
     return user_credentials
